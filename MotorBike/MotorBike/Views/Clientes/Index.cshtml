@@ -1,0 +1,104 @@
+﻿@model IEnumerable<MotorBike.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-between">
+    <h3>Clientes</h3>
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Crear Cliente</a>
+    </p>
+</div>
+
+
+<div class="table-responsive">
+    <table id="example" class="table table-bordered table-hover">
+        <thead class=" bg-dark text-light text-center">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.IdCliente) </th>
+                <th>@Html.DisplayNameFor(model => model.NombreCliente) </th>
+                <th>@Html.DisplayNameFor(model => model.Email) </th>
+                <th>@Html.DisplayNameFor(model => model.TelefonoCliente) </th>
+                <th>@Html.DisplayNameFor(model => model.DireccionCliente) </th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdCliente)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreCliente)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TelefonoCliente)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DireccionCliente)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.IdCliente" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a asp-action="Details" asp-route-id="@item.IdCliente" class="btn btn-warning"><i class="fa-solid fa-magnifying-glass"></i></a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a @* asp-action="Delete" asp-route-id="@item.IdCliente" *@ onclick="confirmarEli(@item.IdCliente)" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts{
+    <script>
+        // Estilos tablas
+        $(document).ready(function () {
+            $('#example').DataTable({
+                pageLength: 5,
+                lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']],
+                scrollX: true,
+                scrollY: false,
+                autoWidth: false,
+                "columnDefs": [
+                    { "width": "20%", "targets": 0 }
+                ]
+    ],
+            });
+        });
+    </script>
+
+    <script>
+        function confirmarEli(id) {
+            Swal.fire({
+                title: '¿Estas seguro de eliminarlo?',
+                text: "¡No podras reversar esta acción!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#FF0000',
+                cancelButtonColor: '#808080',
+                confirmButtonText: 'Si, Eliminarlo!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Eliminado!',
+                        'El registro ha sido eliminado',
+                        'success'
+                    ).then(() => {
+                        window.location = '/Clientes/Delete/' + id
+                    })
+                }
+            })
+        }
+    </script>
+
+}

@@ -1,0 +1,45 @@
+﻿@model MotorBike.Models.Mecanico
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Eliminar Mecanico</h1>
+
+<h3>¿Estas seguro de querer eliminar: @Model.NombreMecanico</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NombreMecanico)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NombreMecanico)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cedula)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cedula)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TelefonoMecanico)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TelefonoMecanico)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DireccionMecanico)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DireccionMecanico)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete" class="mt-2">
+        <input type="hidden" asp-for="IdMecanico" />
+        <input type="submit" value="Delete" class="btn btn-warning" />
+        <a asp-action="Index" class="btn btn-danger">Cancelar</a>
+    </form>
+</div>

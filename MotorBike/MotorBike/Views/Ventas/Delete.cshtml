@@ -1,0 +1,23 @@
+﻿@model MotorBike.Models.Ventas
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Eliminar venta</h1>
+
+<h3>¿Estas seguro que quieres eliminar la venta @Model.IdVenta ? </h3>
+<div>
+    <h4>Venta</h4>
+    <hr />
+    <dl class="row">
+
+    </dl>
+    
+    <form asp-action="Delete" class="mt-2">
+        <input type="hidden" asp-for="IdVenta" />
+        <input type="submit" value="Delete" class="btn btn-warning" />
+        <a asp-action="Index" class="btn btn-danger">Cancelar</a>
+    </form>
+</div>

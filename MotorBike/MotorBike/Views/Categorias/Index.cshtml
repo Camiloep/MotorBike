@@ -1,0 +1,97 @@
+﻿@model IEnumerable<MotorBike.Models.Categorium>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="d-flex justify-content-between">
+    <h3>Categorias</h3>
+    @if (User.IsInRole("Admin"))
+    {
+        <p>
+            <a asp-action="Create" class="btn btn-primary">Crear Categoria</a>
+        </p>
+    }
+</div>
+
+
+<div class="table-responsive">
+    <table id="example" class="table table-bordered table-hover">
+        <thead class=" bg-dark text-light text-center">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.IdCategoria) </th>
+                <th>@Html.DisplayNameFor(model => model.NombreCategoria) </th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdCategoria)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreCategoria)
+                    </td>
+                    <td>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.IdCategoria" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                        }
+                        
+                        <a asp-action="Details" asp-route-id="@item.IdCategoria" class="btn btn-warning"><i class="fa-solid fa-magnifying-glass"></i></a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a @*asp-action="Delete" asp-route-id="@item.IdCategoria" *@ onclick="confirmarEli(@item.IdCategoria)" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@section Scripts{
+    <script>
+        // Estilos tablas
+        $(document).ready(function () {
+            $('#example').DataTable({
+                pageLength: 5,
+                lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']],
+                scrollX: false,
+                scrollY: false,
+                autoWidth: false
+
+            });
+        });
+    </script>
+
+    <script>
+        function confirmarEli(id) {
+            Swal.fire({
+                title: '¿Estas seguro de eliminarlo?',
+                text: "¡No podras reversar esta acción!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#FF0000',
+                cancelButtonColor: '#808080',
+                confirmButtonText: 'Si, Eliminarlo!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Eliminado!',
+                        'El registro ha sido eliminado',
+                        'success'
+                    ).then(() => {
+                        window.location = '/Categorias/Delete/'+id
+                    })
+                }
+            })
+        }
+    </script>
+
+}

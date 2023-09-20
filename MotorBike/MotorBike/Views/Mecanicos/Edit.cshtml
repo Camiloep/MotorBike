@@ -1,0 +1,46 @@
+﻿@model MotorBike.Models.Mecanico
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Editar Mecanico : @Model.NombreMecanico</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdMecanico" />
+            <div class="form-group">
+                <label asp-for="NombreMecanico" class="control-label"></label>
+                <input asp-for="NombreMecanico" class="form-control" />
+                <span asp-validation-for="NombreMecanico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cedula" class="control-label"></label>
+                <input asp-for="Cedula" class="form-control" />
+                <span asp-validation-for="Cedula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TelefonoMecanico" class="control-label"></label>
+                <input asp-for="TelefonoMecanico" class="form-control" />
+                <span asp-validation-for="TelefonoMecanico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DireccionMecanico" class="control-label"></label>
+                <input asp-for="DireccionMecanico" class="form-control" />
+                <span asp-validation-for="DireccionMecanico" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-danger">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

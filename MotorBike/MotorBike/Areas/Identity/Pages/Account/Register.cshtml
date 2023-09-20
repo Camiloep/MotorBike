@@ -1,0 +1,132 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Registro";
+}
+
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="shadow mb-5 bg-white rounded card p-0">
+            <div class="card-header bg-dark text-light">
+                <h3 class="text-center">@ViewData["Title"]</h3>
+                <h4 class="text-center">Crear una nueva cuenta</h4>
+            </div>
+            <div class="card-body m-2">
+                <div class="col-md-12">
+                    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-floating m-1">
+                            <input asp-for="Input.Firstname" class="form-control" autocomplete="Firstname" aria-required="true" />
+                            <label asp-for="Input.Firstname" id="Firstname"></label>
+                            <span asp-validation-for="Input.Firstname" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating m-1">
+                            <input asp-for="Input.Lastname" class="form-control" autocomplete="Lastname" aria-required="true" />
+                            <label asp-for="Input.Lastname" id="Lastname"></label>
+                            <span asp-validation-for="Input.Lastname" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating m-1">
+                            <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                            <label asp-for="Input.Email" id="Email"></label>
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating m-1">
+                            <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                            <label asp-for="Input.Password" id="Password"></label>
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating m-1">
+                            <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                            <label asp-for="Input.ConfirmPassword" id="ConfirmPassword"></label>
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                        </div>
+                          <div class="form-floating m-1"> 
+                            <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select" aria-required="true">
+                                <option disabled selected>Selecciona el rol</option>
+                            </select>
+                            <span asp-validation-for="Input.Role" class="text-danger m-1"></span>
+                          </div> 
+                           
+                        <button id="registerConfirmation" type="submit" class="w-100 btn btn-lg btn-primary" onclick="validarUsuario()">Registarse</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+
+        function validarUsuario() {
+
+
+            let nombre = document.getElementById("Firstname").value;
+            let apellido = document.getElementById("Lastname").value;
+            let email = document.getElementById("Email").value;
+            let contrasena = document.getElementById("Password").value;
+            let confirmContrasena = document.getElementById("ConfirmPassword").value;
+
+
+            let errors = []
+
+            if (nombre.trim() === '' || apellido.trim() === '' || email.trim() === '' || contrasena.trim() === '' || confirmContrasena.trim() === '' || rol.trim() === '') {
+                errors.push('Por favor ingresa todos los campos')
+            } else if (contrasena != confirmContrasena) {
+                errors.push('Las contraseñas no coinciden')
+            } else if (!isValidEmail(email)) {
+                errors.push('Por favor ingrese un correo valido')
+            } else if (!isValidNombre(nombre)) {
+                errors.push('El nombre solo puede contener letras')
+            } else if (!isValidNombre(apellido)) {
+                errors.push('El Apellido solo puede contener letras')
+            } if (errors.length > 0) {
+                swal.fire({
+                    icon: 'error',
+                    title: 'Error en la validación',
+                    width: '25em',
+                    text: errors.join('\n'),
+                    confirmButtonColor: '#198754'
+                })
+                return false
+            } else {
+                Swal.fire({
+                    title: 'Estas seguro de guardar el usuario?',
+                    showDenyButton: true,
+                    confirmButtonText: 'Guardar',
+                    confirmButtonColor: '#198754',
+                    denyButtonText: `No guardar`,
+                    width: '25em',
+                    confirmButtonColor: '#198754'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let form = document.getElementById('registerConfirmation')
+                        form.submit()
+                        swal.fire({
+                            icon: 'success',
+                            title: 'Registrado',
+                            text: 'Usuario registrado',
+                            width: '25em',  
+                            confirmButtonColor: '#198754',
+                            timer: 10000
+                        })
+                    } else if (result.isDenied) {
+                        Swal.fire({
+                            icon: 'info',
+                            text: 'No se ha guardado el usuario',
+                            width: '25em',
+                            confirmButtonColor: '#198754'
+                        })
+                    }
+                })
+            }
+
+        }
+
+    </script>
+}

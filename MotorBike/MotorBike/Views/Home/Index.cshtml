@@ -1,0 +1,157 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-interval="100">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+            <img src="https://encolombia.com/wp-content/uploads/2018/01/Talleres-Motos-Cucuta.jpg" class="d-block w-100" style="height:420px" alt="logo">
+            </div>
+            <div class="carousel-item">
+            <img src="https://blog.tuecompra.com/wp-content/uploads/2019/11/Herramientas-basicas-para-montar-un-taller-mecanico-de-motos-1.jpg" class="d-block w-100" style="height: 420px" alt="logo">
+            </div>
+            <div class="carousel-item">
+            <img src="https://imbrarepuestos.com/wp-content/uploads/2023/08/E-BOOK-como-tener-un-taller-scaled.jpg" class="d-block w-100" style="height:420px" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!--Cards Servicios-->
+    <div class="container text-center pt-5" id="scrollspyHeading1">
+        <div class="pt-5">
+            <h4>Nuestros servicios</h4>
+        </div>
+    </div>
+    <div class="contenedor cartas h-auto pb-5 text-center">
+        <div class="card m-5">
+        <img src="https://i.pinimg.com/originals/36/1a/07/361a074de8ea53f3418db2e0a047924a.jpg" style="height:60%" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Cambio de aceite</h5>
+                <p class="card-text">Solicita tu cambio de aceite</p>
+                <a href="#" class="btn btn-dark">Solicitar</a>
+            </div>
+        </div>
+        <div class="card m-5">
+        <img src="https://i.pinimg.com/564x/6f/85/36/6f853656bf4063fa739adeb49d398078.jpg"  class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Compra de repuesto</h5>
+                <p class="card-text">Compra con nosotros el repuesto que necesitas</p>
+                <a href="#" class="btn btn-dark">Comprar repuesto</a>
+            </div>
+        </div>
+        <div class="card m-5">
+        <img src="https://img.freepik.com/vector-gratis/craneo-motociclista-monocromo-moto-casco_225004-1924.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Solicitud de revision</h5>
+                <p class="card-text">Agenda tu cita ahora para una revisión</p>
+                <a href="#" class="btn btn-dark">Agendar cita</a>
+            </div>
+        </div>
+    </div>
+
+    <!--Horarios-->
+    <header class=" main-header">
+        <div class="bg-dark text-light py-5">
+            <div class="container">
+                <div class="d-flex">
+                    <div class="col-md-12 text-center justify-content-center align-self-center">
+                        <h1>Nuestras puertas estan abiertas</h1>
+                        <br>
+                        <h4>¡Te estamos esperando!</h4>
+                        <p>Lunes a viernes 8:00a.m - 8:00p.m</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!--Contacto-->
+    <div class="container text-center pt-5" id="scrollspyHeading2">
+        <div class="pt-5">
+            <h4>Contactate con nosotros</h4>
+            <p>¿Tienes algo que decir? ¿Una sugerencia, algo que te gustaría que cambiaramos? ¡Escríbenos aquí!</p>
+        </div>
+    </div>
+    <div class="contenedor m-5">
+        <div class="container">
+            <div class="row">
+                <form class="row g-3 needs-validation" validate>
+                    <div class="col-md-3">
+                        <label for="validationCustom01" class="form-label">Nombres</label>
+                        <input type="text" class="form-control" id="validationCustom01" value="" required>
+                        <div class="valid-feedback">
+                            Por favor complete este campo.
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom02" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" id="validationCustom02" value="" required>
+                        <div class="valid-feedback">
+                            Por favor complete este campo.
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom01" class="form-label">Correo</label>
+                        <input type="email" class="form-control" id="validationCustom01" value="" required>
+                        <div class="valid-feedback">
+                            Por favor complete este campo.
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom05" class="form-label">Teléfono</label>
+                        <input type="text" class="form-control" id="validationCustom05" size="50" required>
+                        <div class="invalid-feedback">
+                            Ingrese un número de telefono.
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="validationCustom04" class="form-label">Asunto</label>
+                        <select class="form-select" id="validationCustom04" required>
+                            <option selected disabled value="">Asunto</option>
+                            <option value="Docente">Sugerencia</option>
+                            <option value="Estudiante">Queja</option>
+                            <option value="Acudiente">Reclamo</option>
+                            <option value="Rector">Petición</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Seleccione el Asunto.
+                        </div>
+                    </div>
+                    <div class="mb-3 col-md-4">
+                        <label for="exampleFormControlTextarea1" class="form-label" required>Mensaje</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" required></textarea>
+                    </div>
+                    <div class="col-12 text-center">
+                        <input class="btn btn-secondary" type="submit" value="Enviar">
+                        <input class="btn btn-primary" type="reset">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <!--Ubicación-->
+    <div class="text-center p-5" id="scrollspyHeading3">
+        
+        <h4>Encuentranos, es facil</h4>
+    </div>
+    <div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.877048529708!2d-75.54908502665089!3d6.279890725949738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4428b741c07e75%3A0xf11e0127af043fb1!2sCra.%2036%20%2386b8%2C%20Las%20Granjas%2C%20Medell%C3%ADn%2C%20Manrique%2C%20Medell%C3%ADn%2C%20Antioquia!5e0!3m2!1ses!2sco!4v1694546526128!5m2!1ses!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+@section Scripts {
+
+    <script src="https://kit.fontawesome.com/2f97bb60d4.js" crossorigin="anonymous"></script>
+} 
+

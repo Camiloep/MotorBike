@@ -1,0 +1,72 @@
+﻿@model MotorBike.Models.CompraXRepuesto
+
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Crea Compra por Repuesto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FkCategoria" class="control-label"></label>
+                <select asp-for="FkCategoria" asp-items="ViewBag.FkCategoria" class="form-control">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FkRepuesto" class="control-label"></label>
+                <select asp-for="FkRepuesto" class ="form-control" asp-items="ViewBag.FkRepuesto"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cantidad" class="control-label"></label>
+                <input asp-for="Cantidad" class="form-control" />
+                <span asp-validation-for="Cantidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrecioUnitario" class="control-label"></label>
+                <select asp-for="PrecioUnitario" class ="form-control" asp-items="ViewBag.Precio"></select>
+                <span asp-validation-for="PrecioUnitario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Subtotal" class="control-label"></label>
+                <input asp-for="Subtotal" class="form-control" />
+                <span asp-validation-for="Subtotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrecioFinal" class="control-label"></label>
+                <input asp-for="PrecioFinal" class="form-control" />
+                <span asp-validation-for="PrecioFinal" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-danger">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script>
+        $("#btnAgregar").on("click", function(){
+            
+            var total = parseInt($("#txtPrecio").val()) * parseInt($("#txtCantidad").val())
+            
+            $("#tbRepuesto tbody").append(
+                $("<tr>").append(
+                    $("<tr>").text("#txtRepuesto").val(),
+                    $("<tr>").text("#txtPrecio").val(),
+                    $("<tr>").text("#txtCantidad").val(),
+                )
+            )
+        })
+    </script>
+}

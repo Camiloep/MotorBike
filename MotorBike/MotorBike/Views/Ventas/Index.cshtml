@@ -1,0 +1,87 @@
+﻿@model IEnumerable<MotorBike.Models.Ventas>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-between">
+    <h3>Ventas</h3>
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Crear Venta</a>
+    </p>
+</div>
+
+
+<div class="table-responsive">
+    <table id="example" class="table table-bordered table-hover">
+        <thead class=" bg-dark text-light text-center">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.IdVenta) </th>
+                 <th>@Html.DisplayNameFor(model => model.Total)</th> 
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdVenta)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.IdVenta" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a asp-action="Details" asp-route-id="@item.IdVenta" class="btn btn-warning "><i class="fa-solid fa-magnifying-glass"></i></a>
+                        <a @* asp-action="Delete" asp-route-id="@item.IdVenta" *@ onclick="confirmarEli(@item.IdVenta)" class="btn btn-danger">
+                            <i class="fa-solid fa-trash"></i>
+
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts{
+    <script>
+        // Estilos tablas
+        $(document).ready(function () {
+            $('#example').DataTable({
+                pageLength: 5,
+                lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']],
+                scrollX: true,
+                scrollY: false,
+                autoWidth: false
+
+            });
+        });
+    </script>
+    <script>
+        function confirmarEli(id) {
+            Swal.fire({
+                title: '¿Estas seguro de eliminarlo?',
+                text: "¡No podras reversar esta acción!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#FF0000',
+                cancelButtonColor: '#808080',
+                confirmButtonText: 'Si, Eliminarlo!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Eliminado!',
+                        'El registro ha sido eliminado',
+                        'success'
+                    ).then(() => {
+                        window.location = '/Ventas/Delete/' + id
+                    })
+                }
+            })
+        }
+    </script>
+}
